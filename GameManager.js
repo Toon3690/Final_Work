@@ -1,25 +1,46 @@
-class GameMan {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    toString() {
-        return '(' + this.x + ', ' + this.y + ')';
-    }
+let conf1;
+let wacht;
+let level1;
+let poses = [0, 1, 2, 3];
+let wait = false;
+let play = false;
+
+function setup() {
+    conf1 = new Configure(50, 50, 255, poses);
+
+
+    conf1.setup();
+    //wait = conf1.getState();
+    //console.log(wait);
 }
 
-class ColorPoint extends Point {
-    constructor(x, y, color) {
-        super(x, y);
-        this.color = color;
-    }
-    toString() {
-        return super.toString() + ' in ' + this.color;
-    }
+
+function draw() {
+    background(255);
+    //console.log(conf1.getPose());
+    cycle();
+
 }
 
-let cp = new ColorPoint(25, 8, 'green');
-cp.toString(); // '(25, 8) in green'
 
-console.log(cp instanceof ColorPoint);
-console.log(cp instanceof Point);
+function cycle() {
+    wait = conf1.wait;
+    //conf1.draw();
+
+    if (wait) {
+        wacht = new Waiting();
+        wacht.draw();
+        wacht.changeState();
+        console.log("jaja");
+        play = wacht.play;
+        wait = wacht.wait;
+        console.log(wait);
+
+    } else if (play) {
+        level1 = new Levels();
+        level1.draw(conf1.video);
+        console.log("lvl");
+    }
+    //console.log(conf1.wait);
+
+}
