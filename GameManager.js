@@ -7,8 +7,6 @@ let play = false;
 
 function setup() {
     conf1 = new Configure(50, 50, 255, poses);
-
-
     conf1.setup();
     //wait = conf1.getState();
     //console.log(wait);
@@ -26,17 +24,19 @@ function draw() {
 function cycle() {
     wait = conf1.wait;
     //conf1.draw();
-
-    if (wait) {
+    console.log("wachten " + wait);
+    do{
         wacht = new Waiting();
         wacht.draw();
         wacht.changeState();
         console.log("jaja");
         play = wacht.play;
         wait = wacht.wait;
-        console.log(wait);
+        console.log(" wachten " + wait);
 
-    } else if (play) {
+    }while(wait)
+
+    if (play) {
         level1 = new Levels();
         level1.draw(conf1.video);
         console.log("lvl");
