@@ -4,43 +4,73 @@ let level1;
 let poses = [0, 1, 2, 3];
 let wait = false;
 let play = false;
+let start = false;
+
+let state = 0;
+
+let classes = [];
 
 function setup() {
-    conf1 = new Configure(50, 50, 255, poses);
-    conf1.setup();
-    //wait = conf1.getState();
-    //console.log(wait);
-}
+    classes.push(conf1 = new Configure(50, 50, 255, poses));
+    start = conf1.setup();
+    classes.push(wacht = new Waiting());
+    classes.push(levels = new Levels(conf1.video, conf1.pg));
+    classes.push(ending = new Ending());
 
+}
 
 function draw() {
     background(255);
-    //console.log(conf1.getPose());
+    checkState();
     cycle();
+}
+
+function cycle() {
+     wacht.getState();
+    if (start) {
+        //console.log(conf1.gotPoses());
+        if (wacht.state) {
+            console.log("nog even wachten");
+            console.log(conf1.pose);
+            wacht.draw();
+        } else if (levels.state) {
+            //console.log("we kunnen er aan beginnen");
+            levels.draw(conf1.video);
+            //conf1.gotPoses();
+            //console.log(conf1.color);
+        } else if (ending.state) {
+            console.log("good job");
+            ending.draw();
+        }
+    }
+
+    /*switch (state) {
+        case 1:
+            console.log("nog even wachten");
+            wacht.draw();
+            break;
+
+    } */
+
 
 }
 
-
-function cycle() {
-    wait = conf1.wait;
-    //conf1.draw();
-    console.log("wachten " + wait);
-    do{
-        wacht = new Waiting();
-        wacht.draw();
-        wacht.changeState();
-        console.log("jaja");
-        play = wacht.play;
-        wait = wacht.wait;
-        console.log(" wachten " + wait);
-
-    }while(wait)
-
-    if (play) {
-        level1 = new Levels();
-        level1.draw(conf1.video);
-        console.log("lvl");
+function checkState() {
+    for (let i = 0; i < classes.length; i++) {
+        classes[i].getState(conf1, wacht, levels, ending);
     }
-    //console.log(conf1.wait);
+}
 
+function keyPressed() {
+
+    if (keyCode == 97) {
+        wacht.state = true;
+    } else if (keyCode == 98) {
+        wacht.state = false;
+        levels.state = true;
+    } else if (keyCode == 99) {
+        wacht.state = false;
+        levels.state = false;
+        ending.state = true;
+    }
 }
