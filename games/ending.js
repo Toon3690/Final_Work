@@ -1,4 +1,4 @@
-class Waiting {
+class Ending {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -7,7 +7,7 @@ class Waiting {
 
     draw(){
         fill(0, 102, 153);
-        text("Even wachten", 100,30);
+        text("het is gedaan", 100,30);
         //console.log("oei");
     }
 
@@ -17,7 +17,6 @@ class Waiting {
     }
 
     getState(){
-        //console.log(levels.draw());
         return this.state;
     }
 }
