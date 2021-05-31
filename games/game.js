@@ -1,5 +1,5 @@
-class Levels {
-    constructor(video, pg) {
+class Game {
+    constructor(video, pg, spring) {
         this.video = video;
         this.pg = pg;
         this.state;

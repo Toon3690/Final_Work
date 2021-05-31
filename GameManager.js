@@ -14,7 +14,7 @@ function setup() {
     classes.push(conf1 = new Configure(50, 50, 255, poses));
     start = conf1.setup();
     classes.push(wacht = new Waiting());
-    classes.push(levels = new Levels(conf1.video, conf1.pg));
+    classes.push(game = new Game(conf1.video, conf1.pg));
     classes.push(ending = new Ending());
 
 }
@@ -33,9 +33,9 @@ function cycle() {
             console.log("nog even wachten");
             console.log(conf1.pose);
             wacht.draw();
-        } else if (levels.state) {
+        } else if (game.state) {
             //console.log("we kunnen er aan beginnen");
-            levels.draw(conf1.video);
+            game.draw(conf1.video);
             //conf1.gotPoses();
             //console.log(conf1.color);
         } else if (ending.state) {
@@ -57,7 +57,7 @@ function cycle() {
 
 function checkState() {
     for (let i = 0; i < classes.length; i++) {
-        classes[i].getState(conf1, wacht, levels, ending);
+        classes[i].getState(conf1, wacht, game, ending);
     }
 }
 
@@ -67,10 +67,10 @@ function keyPressed() {
         wacht.state = true;
     } else if (keyCode == 98) {
         wacht.state = false;
-        levels.state = true;
+        game.state = true;
     } else if (keyCode == 99) {
         wacht.state = false;
-        levels.state = false;
+        game.state = false;
         ending.state = true;
     }
 }

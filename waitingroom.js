@@ -32,13 +32,18 @@ let timer = 5
 
 let play = false;
 
-const voice1 = new Audio('voice1.m4a');
+let canv;
+let img;
+let snapshot;
+let to_save;
+let counter = 1;
 
+const voice1 = new Audio('voice1.m4a');
 
 function setup() {
 
     // Canvas + framerate
-    createCanvas(640, 480);
+     canv = createCanvas(640, 480);
     frameRate(40);
 
     // Setup webcam
@@ -57,6 +62,10 @@ function setup() {
     poseNet = ml5.poseNet(video, optionsForPoseNet);
     poseNet.on('pose', gotPoses);
     
+    img1 = createImage(640, 480);
+    img2 = createImage(640, 480);
+    img3 = createImage(640, 480);
+    img4 = createImage(640, 480);
 
 }
 
@@ -103,7 +112,12 @@ function draw() {
         //voice1.play();
     }
 
-    
+   if(counter == 5){
+    image(img1, 0,0,320,240);
+    image(img2, 320,0,320,240);
+    image(img3, 0,240,320,240);
+    image(img4, 320,240,320,240);
+   }
 }
 
 function drawSkeleton() {
@@ -146,9 +160,24 @@ setInterval(function checkForStart() {
 
 // Maak bij een klik een boom aan en push deze op de eerstvolgende plaats in de array met zijn waarden
 function mouseClicked() {
-    
+    //img.loadPixels();
+    if(counter == 1){
+        img1 = get( 0, 0, 640, 480 );
+    }else if(counter == 2){
+        img2 = get( 0, 0, 640, 480 );
+    }else if(counter == 3){
+        img3 = get( 0, 0, 640, 480 );
+    }else if(counter == 4){
+        img4 = get( 0, 0, 640, 480 );
+    }
+   counter++;
 }
 
+function keyPressed(){
+    //console.log(snapshot);
+    noLoop();
+    
+}
 /* setInterval(function(){
     if(spring){
         if (pose) {
