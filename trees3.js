@@ -27,6 +27,7 @@ let v5;
 let rot;
 
 let dist;
+let circ;
 
 
 //  Matter.js
@@ -64,6 +65,7 @@ function setup() {
     world = engine.world;
     composite = Engine.composite;
     Matter.Runner.run(engine);
+    circ = Bodies.circle(1,1,1);
 
     // Rendert aparte sheet voor graphics
     pg = createGraphics(640, 480);
@@ -90,7 +92,7 @@ function setup() {
     poseNet = ml5.poseNet(video, optionsForPoseNet);
     poseNet.on('pose', gotPoses);
 
-Matter.Events.on(Runner, "beforeUpdate", function(e) {
+/* Matter.Events.on(Runner, "beforeUpdate", function(e) {
 	// random force to the left (from right edge center, affects torque?)
 	let from = Matter.Vector.create(render.options.width, render.options.height/2)
 	let force = Matter.Vector.create(Matter.Common.random(-2e-4, 0), 0)
@@ -99,7 +101,7 @@ Matter.Events.on(Runner, "beforeUpdate", function(e) {
 	myComposite.bodies.forEach(function(body) {
 		Matter.Body.applyForce(body, from, force)
 	})
-})
+}) */
    
 
 }
@@ -107,9 +109,11 @@ Matter.Events.on(Runner, "beforeUpdate", function(e) {
 function gotPoses(poses) {
     if (poses.length > 0) {
         pose = poses[0].pose;
-
-        //circ = Bodies.circle(pose.leftWrist.x, pose.leftWrist.y, 20);
-        //Composite.add(engine.world, circ);
+        //console.log(circ);
+        Composite.remove(engine.world, circ);
+        circ = Bodies.circle(pose.leftWrist.x, pose.leftWrist.y, 20);
+        Composite.add(engine.world, circ);
+        //console.log(circ);
     }
 }
 
@@ -131,7 +135,7 @@ function draw() {
         let eye1 = createVector(pose.keypoints[1].position.x, pose.keypoints[1].position.y);
 
         dist = nose1.dist(eye1);
-        //console.log(dist);
+        //console.log(dist/50);
         //console.log(pose);
         ellipse(pose.keypoints[0].position.x, pose.keypoints[0].position.y, 20);
         stroke(255, 0, 0);
@@ -170,7 +174,7 @@ function mouseClicked() {
     if (pose) {
         var name = "boom" + teller;
         //name = new Trees(pose.keypoints[0].position.x, pose.keypoints[0].position.y, pose.keypoints[9].position.x, pose.keypoints[9].position.y, pose.keypoints[10].position.x, pose.keypoints[10].position.y, round(random(5, 10)), round(random(5, 10)));
-        name = new Trees(pose.keypoints[0].position.x, pose.keypoints[0].position.y, 200, 200, 900, 200, random(0.1, 0.4), random(0.1, 0.4));
+        name = new Trees2(pose.keypoints[0].position.x, pose.keypoints[0].position.y, 200, 200, 900, 200, random(0.1, 0.4), random(0.1, 0.4), dist);
         //name = new Trees(300,300, 200, 200, 900, 200);
         bomen.push(name);
         //console.log(name);
@@ -250,7 +254,7 @@ function keyPressed() {
 function branch(len, str, gp, rota, ran1, ran2) {
     //console.log(ran1);
     push();
-
+    //gp.scale(dist/50);
     //gp.stroke(255, 0, 0);
     /*     gp.strokeWeight(str);
         gp.line(0, 0, 0, -len);

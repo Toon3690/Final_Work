@@ -108,7 +108,7 @@ function draw() {
         textSize(32);
         fill(255,0,0);
         textAlign(CENTER, CENTER);
-        //text("Blijf even staan, we beginnen zo", 320, 240);
+        text("Blijf even staan, we beginnen zo", 320, 240);
         //voice1.play();
     }
 
@@ -144,11 +144,11 @@ setInterval(function checkForStart() {
         tijdNeus++;
     } else {
         //console.log("neus?");
-        tijdNeus--;
+        tijdNeus = 0;
     }
 
     console.log(tijdNeus);
-    if (tijdNeus == 3) {
+    if (tijdNeus == 8) {
         console.log("laten we beginnen");
         waitRoom = true;
     }else if(tijdNeus == 20) {
@@ -175,7 +175,7 @@ function mouseClicked() {
 
 function keyPressed(){
     //console.log(snapshot);
-    noLoop();
+    //noLoop();
     
 }
 /* setInterval(function(){

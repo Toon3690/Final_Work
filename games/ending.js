@@ -9,6 +9,8 @@ class Ending {
         fill(0, 102, 153);
         text("het is gedaan", 100,30);
         //console.log("oei");
+
+        
     }
 
     changeState(){

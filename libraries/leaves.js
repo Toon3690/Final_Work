@@ -13,12 +13,12 @@ class Test2 {
 
     }
 
-    add(stati) {
-        this.body = Bodies.rectangle(this.a, this.b, this.c, this.d, {
+    add(stati, Bodies) {
+        this.body = Matter.Bodies.rectangle(this.a, this.b, this.c, this.d, {
             isStatic: stati,
             frictionAir: this.air
         });
-        Body.rotate(this.body, random(0, 200));
+        Matter.Body.rotate(this.body, random(0, 200));
         return this.body;
     }
 
@@ -31,8 +31,8 @@ class Test2 {
         return (pos.y > height + 100);
     }
 
-    removeFromWorld() {
-        Composite.remove(world, this.body);
+    removeFromWorld(world) {
+        Matter.Composite.remove(world, this.body);
     }
 
     show() {

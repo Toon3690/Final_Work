@@ -1,53 +1,44 @@
 class Configure {
-    constructor(x, y, color, poses) {
-        this.color = color;
-        this.pg;
-        this.pj;
+    constructor() {
+
+        this.graph;
         this.video;
         this.posenet;
         this.optionsForPoseNet = {
             flipHorizontal: true,
             detectionType: 'single'
         };
-        this.pose;
-        this.poses = poses;
-        //console.log(this.poses);
-        this.state;
-        this.results;
 
-        this.Engine = Matter.Engine,
-            this.Runner = Matter.Runner,
-            this.Bodies = Matter.Bodies,
-            this.Composite = Matter.Composite,
-            this.Composites = Matter.Composites,
-            this.Common = Matter.Common,
-            this.Vertices = Matter.Vertices,
-            this.Mouse = Matter.Mouse,
-            this.MouseConstraint = Matter.MouseConstraint,
-            this.Body = Matter.Body;
+        this.engine;
+
+        this._lastPose = null;
+        this._lastSkeleton = null;
+
+        this.state;
+
+
     }
 
     setup() {
+
         // P5 JS
-        var canvas = createCanvas(640,480);
+        var canvas = createCanvas(640, 480);
         canvas.position((windowWidth - width) / 2, (windowHeight - height) / 2);
         frameRate(40);
         rectMode(CENTER);
-        this.pg = createGraphics(640, 480);
-        this.pj = createGraphics(640, 480);
+        this.graph = createGraphics(640, 480);
 
         // For Posenet
         this.video = createCapture(VIDEO);
         this.video.size(width, height);
         this.video.hide();
         this.poseNet = ml5.poseNet(this.video, this.optionsForPoseNet);
-        
-        this.poseNet.on('pose', this.gotPoses);
+        this.poseNet.on('pose', (p) => this.gotPoses(p));
 
         // Matter JS
-        this.engine = this.Engine.create();
+        this.engine = Matter.Engine.create();
         this.world = this.engine.world;
-        this.composite = this.Engine.composite;
+        this.composite = Matter.Engine.composite;
         Matter.Runner.run(this.engine);
 
         return true;
@@ -55,28 +46,34 @@ class Configure {
 
     draw() {
         rectMode(CENTER);
-        fill(this.color);
-        rect(this.x, this.y, 50, 50);
-        console.log(this.results);
+        rect(0, 0, 50, 50);
+        if (this.lastPose) {
+            //console.log(this.lastPose.keypoints[0].position.x);
+        }
         return true;
     }
 
+    get lastPose() {
+        return this._lastPose;
+    }
+
+    get lastSkeleton(){
+        return this._lastSkeleton;
+    }
+
     gotPoses(results) {
-        var pos;
         if (results.length > 0) {
-            pos = results[0].pose;
-            //console.log(results);
-            //console.log(this.results);
+            this._lastPose = results[0].pose;
+            this._lastSkeleton = results[0].skeleton;
         }
-        this.pose = pos;
     }
 
 
-    getState(conf1, wacht, levels, ending) {   
+    getState(conf1, wacht, levels, ending) {
         return 2;
     }
 
-    cycle(){
+    cycle() {
         wacht.draw();
     }
 }
