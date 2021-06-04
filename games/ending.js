@@ -1,24 +1,12 @@
 class Ending {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
+    constructor() {
         this.state;
     }
 
-    draw(){
-        fill(0, 102, 153);
-        text("het is gedaan", 100,30);
-        //console.log("oei");
-
-        
-    }
-
-    changeState(){
-        this.wait = false;
-        this.play = true;
-    }
-
-    getState(){
-        return this.state;
+    draw() {
+        image(game.img1, 0, 0, 320, 240);
+        image(game.img2, 320, 0, 320, 240);
+        image(game.img3, 0, 240, 320, 240);
+        image(game.img4, 320, 240, 320, 240);
     }
 }

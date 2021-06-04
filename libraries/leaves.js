@@ -12,8 +12,8 @@ class Test2 {
         }
 
     }
-
-    add(stati, Bodies) {
+ 
+    add(stati) {
         this.body = Matter.Bodies.rectangle(this.a, this.b, this.c, this.d, {
             isStatic: stati,
             frictionAir: this.air
@@ -38,18 +38,18 @@ class Test2 {
     show() {
         var pos = this.body.position;
         var angle = this.body.angle;
-
+        
         push();
+
         translate(pos.x, pos.y);
         rectMode(CENTER);
         rotate(angle);
         strokeWeight(1);
         stroke(34, 139, 34);
         fill(58, 95, 11);
-        //console.log(this.a);
         rect(0, 0, this.c, this.d);
 
-        pop();
+        pop(); 
     }
 
 }

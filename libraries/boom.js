@@ -6,7 +6,7 @@ class Trees {
         this.graph = configure.graph;
         this.graph.resetMatrix();
         this.graph.translate(posZeroX, posZeroY);
-        this.Bodies = configure.Bodies;
+        this.Bodies = Matter.Bodies;
 
         this.posZeroX = posZeroX;
         this.posZeroY = posZeroY;
@@ -22,9 +22,6 @@ class Trees {
         this.angleBetween2 = this.v1.angleBetween(this.v3);
         this.ran1 = ran1;
         this.ran2 = ran2;
-        //console.log(ran1);
-        //console.log(this.angleBetween1);
-        //console.log(this.angleBetween2);
 
         this.tests = [];
 
@@ -116,14 +113,14 @@ class Trees {
 
 
     // Maak de bladeren aan in de array "tests"
-    makeLeaves(a, tests) {
+    /* makeLeaves(a, tests) {
         for (var i = 0; i < a; i++) {
             tests.push(new Test2(this.posZeroX + random(-70, 70) + sin(i) * 100, this.posZeroY + random(-170, -50) + cos(i) * 100, 20, 20, true, 1));
         }
 
-        for (var i = 0; i < tests.length; i++) {
+        /* for (var i = 0; i < tests.length; i++) {
             //console.log(this.Bodies);
             tests[i].add(true, this.Bodies);
-        }
-    }
+        } */
+    
 }

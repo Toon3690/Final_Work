@@ -15,8 +15,6 @@ class Configure {
         this._lastSkeleton = null;
 
         this.state;
-
-
     }
 
     setup() {
@@ -44,15 +42,6 @@ class Configure {
         return true;
     }
 
-    draw() {
-        rectMode(CENTER);
-        rect(0, 0, 50, 50);
-        if (this.lastPose) {
-            //console.log(this.lastPose.keypoints[0].position.x);
-        }
-        return true;
-    }
-
     get lastPose() {
         return this._lastPose;
     }
@@ -66,14 +55,5 @@ class Configure {
             this._lastPose = results[0].pose;
             this._lastSkeleton = results[0].skeleton;
         }
-    }
-
-
-    getState(conf1, wacht, levels, ending) {
-        return 2;
-    }
-
-    cycle() {
-        wacht.draw();
     }
 }

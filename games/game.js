@@ -3,9 +3,6 @@ class Game {
 
         this.video = configure.video;
         this.graph = configure.graph;
-        this.state;
-
-        //this.pose = configure.lastPose;
 
         this.spring = false;
         this.summer = false;
@@ -13,26 +10,39 @@ class Game {
         this.winter = false;
 
         this.lvl1;
+        this.lvl2;
+        this.lvl3;
+
+        this.img1;
+        this.img2;
+        this.img3;
+        this.img4;
 
         this.bomen = [];
         this.bladeren = [];
 
+        this.leafTeller = 0;
         this.teller = 0;
 
         this.configure = configure;
-        //console.log(this.configure.lastPose)
+        this.state;
     }
 
-    
-
+   
     setup() {
         this.lvl1 = new Level1(this.configure);
+        this.lvl2 = new Level2(this.configure);
+        this.lvl3 = new Level3(this.configure);
+    }
 
+    setImages(){
+        this.img1 = createImage(640, 480);
+        this.img2 = createImage(640, 480);
+        this.img3 = createImage(640, 480);
+        this.img4 = createImage(640, 480);
     }
 
     draw() {
-        
-        //console.log(this.configure.lastPose)
 
         push();
         translate(this.video.width, 0);
@@ -40,27 +50,30 @@ class Game {
         image(this.video, 0, 0, this.video.width, this.video.height);
         pop();
 
-        //this.lvl1.setTrees();
         this.setEllipses();
-        this.setLeaves();
-        this.makeSun();
+        //this.makeSun();
 
         image(this.graph, 0, 0);
 
-        // TODO zet state op false eens het game is afgerond
-
-        
+        this.lvl2.setLeaves();
     }
 
-    doSpring(){
-        this.lvl1.setTrees();
+    checkSpring() {
+        if (this.spring) {
+            this.lvl1.setTrees();
+        }
     }
 
-    setAutumn() {
-       for (var i = 0; i < this.bladeren.length; i++) {
-            var b = this.bladeren[i].add(false);
-            Matter.Composite.add(this.configure.engine.world, b);
-        }       
+    checkSummer() {
+        if (this.summer) {
+            this.lvl2.makeLeaves();
+        }
+    }
+
+    checkAutumn() {
+        if (this.autumn) {
+            this.lvl3.setAutumn();
+        }
     }
 
     setEllipses() {
@@ -70,7 +83,6 @@ class Game {
             stroke(255, 0, 0);
 
             if (pose.leftWrist.confidence > 0.35) {
-                //console.log(pose.leftWrist.confidence);
                 ellipse(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20);
             } else if (pose.rightWrist.confidence > 0.35) {
                 ellipse(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20);
@@ -78,47 +90,15 @@ class Game {
         }
     }
 
-    setLeaves() {
-        for (var i = 0; i < this.bladeren.length; i++) {
-            this.bladeren[i].show();
-            //tests.drawSprite();
-            if (this.bladeren[i].isOffScreen()) {
-                //console.log("offff");
-                this.bladeren[i].removeFromWorld(this.configure.engine.world);
-                this.bladeren.splice(i, 1);
-                i--;
-            }
-        }
-    }
-
-     setTrees() {
-        console.log(this.bomen);
-        var pose = this.configure.lastPose;
-        if (pose) {
-            var name = "boom" + this.teller;
-            name = new Trees(this.configure, pose.keypoints[0].position.x, pose.keypoints[0].position.y, 200, 200, 900, 200, random(0.1, 0.4), random(0.1, 0.4));
-            this.bomen.push(name);
-            this.bomen[this.teller].makeTree();
-            this.bomen[this.teller].makeTree2();
-            this.bomen[this.teller].makeLeaves(5, this.bladeren);
-            //console.log(this.bladeren);
-            this.teller++;
-        }
-    } 
-
     updateTrees() {
         console.log(this.bomen.length);
         for (var i = 0; i < this.bomen.length; i++) {
-            
+
             this.bomen[i].makeTree();
             this.bomen[i].makeBranches();
             this.bomen[i].makeTree2();
             this.bomen[i].makeBranches2();
         }
-    }
-
-    getState() {
-        return this.state;
     }
 
     makeSun() {
@@ -132,6 +112,16 @@ class Game {
     }
 
 
-}
+    doSpring() { 
+            this.lvl1.setTrees();     
+    }
 
-    
+    doSummer() { 
+            this.lvl2.makeLeaves();
+    }
+
+    doAutumn() {    
+            this.lvl3.setAutumn();   
+    }
+
+}
