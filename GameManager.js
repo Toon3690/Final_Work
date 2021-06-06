@@ -13,6 +13,9 @@ let keer1 = true;
 let klassen = [];
 
 function setup() {
+    wood = loadImage("wood.jpg");
+    gold = loadImage("gold.jpg");
+
     klassen.push(conf1 = new Configure());
     start = conf1.setup();
 
@@ -24,17 +27,72 @@ function setup() {
 
         klassen.push(game = new Game(conf1));
         game.setImages();
-        setInterval(() => game.checkSpring(), 2000);
+        setInterval(() => game.checkSpring(), 4000);
         setInterval(() => game.checkSummer(), 400);
 
-        setInterval(() => this.checkStart(), 500);
-
+        //setInterval(() => this.checkStart(), 500);
+       
         klassen.push(ending = new Ending());
     }
 }
 
 function draw() {
+    
+    push();
+    translate(-width/2+50,-height/2+50,0);
+    background(0);
     cycle();
+    pop();
+
+    pointLight(250, 250, 250, 0, -300, 200);
+    pointLight(250, 250, 250, 0, -300, 200);
+    noStroke();
+
+   
+    
+
+    //pointLight(255,255,255,0,-200,200);
+    //pointLight(255,255,255,0,-200,200);
+   // ambientLight(255);
+
+   frame();
+
+
+     
+   // Set the perspective to the fov
+   //perspective(PI / 2.8, float(width)/float(height),cZ/10.0, cZ*5.0);
+   //ortho(-width, width, height, -height/2, 0.1, 100);
+   
+   
+    
+}
+
+function frame(){
+    push();
+    noStroke();
+    translate(0,0,0);
+    texture(gold);
+    push();
+    translate(0,270,0);
+    //onderste
+    box(740,50,25);
+    pop();
+    push();
+    translate(0,-270,0);
+    //bovenste
+    box(740,50,25);
+    pop();
+    push();
+    translate(350,0,0);
+    //rechts
+    box(50,580,25);
+    pop();
+    push();
+    translate(-350,0,0);
+    //links
+    box(50,580,25);
+    pop();
+    pop();
 }
 
 function checkStart() {
@@ -44,31 +102,31 @@ function checkStart() {
             game.summer = false;
             game.autumn = false;
 
-        }, 5000);
+        }, 100);
         setTimeout(function () {
-            game.img1 = get(0, 0, 640, 480);
+            game.img1 = get(50, 50, 640, 480);
             game.spring = false;
             game.summer = true;
             game.autumn = false;
-        }, 10000);
+        }, 15000);
         setTimeout(function () {
-            game.img2 = get(0, 0, 640, 480);
+            game.img2 = get(50, 50, 640, 480);
             game.spring = false;
             game.summer = false;
             game.autumn = true;
             game.checkAutumn();
-        }, 15000);
+        }, 30000);
         setTimeout(function () {
-            game.img3 = get(0, 0, 640, 480);
-            game.img4 = get(0, 0, 640, 480);
+            game.img3 = get(50, 50, 640, 480);
+            game.img4 = get(50, 50, 640, 480);
             game.state = false;
             ending.state = true;
 
-        }, 20000);
+        }, 37500);
         setTimeout(function () {
             game.state = false;
             ending.state = false;
-        }, 25000);
+        }, 42500);
         keer1 = false;
     }
 }
@@ -100,7 +158,7 @@ function cycle() {
 }
 
 function mouseClicked() {
-    //game.onClick();
+    game.onClick();
 }
 
 function keyPressed() {
@@ -122,12 +180,12 @@ function keyPressed() {
         console.log("ok");
     } else if (keyCode == 83) {
         //game.updateTrees();
-        //game.doSummer();
         game.summer = true;
         game.doSummer();
         //console.log("jajajajaja");
     } else if (keyCode == 65) {
         game.doAutumn();
+        game.autumn = true;
         game.summer = false;
         //console.log("jajajajaja");
     }

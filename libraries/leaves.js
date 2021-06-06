@@ -41,13 +41,15 @@ class Test2 {
         
         push();
 
-        translate(pos.x, pos.y);
+        translate(pos.x, pos.y,50);
         rectMode(CENTER);
         rotate(angle);
         strokeWeight(1);
         stroke(34, 139, 34);
+        noStroke();
         fill(58, 95, 11);
         rect(0, 0, this.c, this.d);
+        //plane(20,20);
 
         pop(); 
     }

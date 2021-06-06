@@ -8,6 +8,8 @@ class Trees {
         this.graph.translate(posZeroX, posZeroY);
         this.Bodies = Matter.Bodies;
 
+        this.tree = loadImage("tree.jpg");
+
         this.posZeroX = posZeroX;
         this.posZeroY = posZeroY;
         this.posWrist1X = posWrist1X;
@@ -28,6 +30,8 @@ class Trees {
         this.rot1 = this.angleBetween1;
         this.rot2 = this.angleBetween2;
         
+        console.log(this.rot1);
+
         this.dist = dist;
         //pop();
     }
@@ -48,6 +52,7 @@ class Trees {
         this.branch(80, 10,this.graph, this.ran1);
     }
 
+
     // Maak de rechtertak
     makeTree2() {
         this.graph.resetMatrix();
@@ -66,6 +71,7 @@ class Trees {
         this.branch(40, 8, this.graph, 0.4);
     }
 
+    
 
     branch(len, str, gp, rota, ran1, ran2) {
         //console.log(ran1);
@@ -110,6 +116,220 @@ class Trees {
     
     }
 
+     makeTrees3(){
+       // console.log("3d shit");
+        //this.graph.resetMatrix();
+        
+        push();
+        noStroke();
+        texture(this.tree)
+        //translate(this.posZeroX, this.posZeroY+225, -25);
+        translate(this.posZeroX, 300+225, -25);
+        box(20, 450, 30);
+        
+        this.branch2(150);
+        pop();
+    }
+
+    branch2(len){
+
+        texture(this.tree)
+
+        push();
+        var rota = this.rot1 + PI / 2;
+        var X = sin(rota) * len/2;
+        var Y = cos(rota) * len/2;
+        translate(0, -200);
+        translate(X, -Y);
+        rotate(rota);
+        box(20, len, 30);
+        
+        push();
+        var rota2 = 0.6;
+        var X2 = sin(rota2) * len/4;
+        var Y2 = cos(rota2) * len/4;
+        translate(0, -len/2+25);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/1.5, 30);
+
+        push();
+        var rota2 = 0.3;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+
+        push();
+        var rota2 = -0.7;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+
+        pop();
+
+        push();
+        var rota3 = -0.6;
+        var X3 = sin(rota3) * len/4;
+        var Y3 = cos(rota3) * len/4;
+
+        translate(0, -len/2+25);
+        translate(X3, -Y3);
+        rotate(rota3);
+        box(20, len/1.5, 30);
+        push();
+        var rota2 = 0.3;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+
+        push();
+        var rota2 = -0.7;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+        pop();
+        pop();
+
+
+
+
+        push();
+        var rota = this.rot2 + PI / 2;
+        var X = sin(rota) * len/2;
+        var Y = cos(rota) * len/2;
+        translate(0, -200);
+        translate(X, -Y);
+        rotate(rota);
+        box(20, len, 30);
+        
+        push();
+        var rota2 = 0.6;
+        var X2 = sin(rota2) * len/4;
+        var Y2 = cos(rota2) * len/4;
+        translate(0, -len/2+25);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/1.5, 30);
+
+        push();
+        var rota2 = 0.3;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+
+        push();
+        var rota2 = -0.7;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+
+        pop();
+
+        push();
+        var rota3 = -0.6;
+        var X3 = sin(rota3) * len/4;
+        var Y3 = cos(rota3) * len/4;
+
+        translate(0, -len/2+25);
+        translate(X3, -Y3);
+        rotate(rota3);
+        box(20, len/1.5, 30);
+        push();
+        var rota2 = 0.3;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+
+        push();
+        var rota2 = -0.7;
+        var X2 = sin(rota2) * len/6;
+        var Y2 = cos(rota2) * len/6;
+        translate(0, -len/4);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/2, 30);
+        pop();
+        pop();
+        pop();
+
+        
+
+
+        // Rechtse
+/*          push();
+        var rota = this.rot2 + PI / 2;
+        var X = sin(rota) * len/2;
+        var Y = cos(rota) * len/2;
+        //console.log(X);
+        //console.log(Y);
+        translate(0, -200);
+        translate(X, -Y);
+        rotate(rota);
+        box(20, len, 30);
+        
+        push();
+        var rota2 = 0.3;
+        var X2 = sin(rota2) * len/4;
+        var Y2 = cos(rota2) * len/4;
+        //console.log(X);
+        //console.log(Y);
+        translate(0, -len/2+25);
+        translate(X2, -Y2);
+        rotate(rota2);
+        box(20, len/1.5, 30);
+        pop();
+
+        var rota3 = -0.6;
+        var X3 = sin(rota3) * len/4;
+        var Y3 = cos(rota3) * len/4;
+
+        translate(0, -len/2+25);
+        translate(X3, -Y3);
+        rotate(rota3);
+        box(20, len/1.5, 30);
+
+        pop();  */
+
+        
+
+        /* push();
+        translate(-70.7, -len/2 - 70.7);
+        rotate(-45);
+        angleMode(DEGREES);
+        box(20, len, 30);
+        pop(); */
+
+
+        
+    } 
 
 
     // Maak de bladeren aan in de array "tests"

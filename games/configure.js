@@ -20,15 +20,17 @@ class Configure {
     setup() {
 
         // P5 JS
-        var canvas = createCanvas(640, 480);
+        var canvas = createCanvas(740, 580, WEBGL);
         canvas.position((windowWidth - width) / 2, (windowHeight - height) / 2);
+
         frameRate(40);
         rectMode(CENTER);
         this.graph = createGraphics(640, 480);
 
+        //this.graph.translate(-width/2,-height/2,0);
         // For Posenet
         this.video = createCapture(VIDEO);
-        this.video.size(width, height);
+        this.video.size(640, 480);
         this.video.hide();
         this.poseNet = ml5.poseNet(this.video, this.optionsForPoseNet);
         this.poseNet.on('pose', (p) => this.gotPoses(p));

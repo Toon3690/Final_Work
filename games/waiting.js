@@ -8,10 +8,14 @@ class Waiting {
 
 
     draw() {
+        
+        push();
+        fill(0);
+        rectMode(CORNER);
+        rect(2,0,637,480);
+        pop();
+        
         fill(0, 102, 153);
-        background(0);
-        text("Even wachten", 100, 30);
-
         var pose = this.configure.lastPose;
         var skeleton = this.configure.lastSkeleton;
         this.drawSkeleton(pose, skeleton);
@@ -31,7 +35,7 @@ class Waiting {
                 }
                 console.log(this.tijdNeus);
 
-                if (this.tijdNeus == 2) {
+                if (this.tijdNeus == 1) {
                     console.log("laten we beginnen");
                     wacht.state = false;
                     game.state = true;

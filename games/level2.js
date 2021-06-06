@@ -22,8 +22,11 @@ class Level2 extends Game {
 
         var pose = this.configure.lastPose;
         if(pose){
-            game.bladeren.push(new Test2(pose.keypoints[0].position.x, pose.keypoints[0].position.y, 20, 20, true, 1));
+            game.bladeren.push(new Test2(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20, 20, true, 1));
             game.bladeren[this.leafTeller].add(true);
+            game.leafTeller++;
+            game.bladeren.push(new Test2(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20, 20, true, 1));
+            game.bladeren[game.leafTeller].add(true);
             game.leafTeller++;
         }
     } 
