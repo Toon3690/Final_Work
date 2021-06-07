@@ -49,7 +49,7 @@ class Waiting {
                 }
                 console.log(this.tijdNeus);
 
-                if (this.tijdNeus == 2) {
+                if (this.tijdNeus == 10) {
                     console.log("laten we beginnen");
                     wacht.state = false;
                     game.state = true;
