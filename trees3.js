@@ -119,7 +119,6 @@ function gotPoses(poses) {
 
 
 function draw() {
-    Engine.update(engine);
 
     // Display video in the background
     push();

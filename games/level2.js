@@ -30,4 +30,19 @@ class Level2 extends Game {
             game.leafTeller++;
         }
     } 
+
+    setEllipses() {
+        var pose = this.configure.lastPose;
+        if (pose) {
+
+            stroke(0);
+            fill(255);
+            if (pose.leftWrist.confidence > 0.35) {
+                ellipse(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20);
+            } 
+            if (pose.rightWrist.confidence > 0.35) {
+                ellipse(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20);
+            }
+        }
+    }
 }

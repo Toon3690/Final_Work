@@ -10,6 +10,7 @@ class Test2 {
             isStatic: this.stat,
             frictionAir: this.air
         }
+        this.texture = loadImage("leafTexture.jpg");
 
     }
  
@@ -49,7 +50,8 @@ class Test2 {
         noStroke();
         fill(58, 95, 11);
         rect(0, 0, this.c, this.d);
-        //plane(20,20);
+        //texture(this.texture);
+        plane(20,20);
 
         pop(); 
     }

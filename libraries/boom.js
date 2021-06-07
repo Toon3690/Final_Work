@@ -123,8 +123,8 @@ class Trees {
         push();
         noStroke();
         texture(this.tree)
-        //translate(this.posZeroX, this.posZeroY+225, -25);
-        translate(this.posZeroX, 300+225, -25);
+        translate(this.posZeroX, this.posZeroY+225, -25);
+        //translate(this.posZeroX, 300+225, -25);
         box(20, 450, 30);
         
         this.branch2(150);

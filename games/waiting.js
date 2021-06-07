@@ -8,25 +8,39 @@ class Waiting {
 
 
     draw() {
-        
+
         push();
         fill(0);
         rectMode(CORNER);
-        rect(2,0,637,480);
+        rect(2, 0, 637, 480);
         pop();
-        
+
         fill(0, 102, 153);
         var pose = this.configure.lastPose;
         var skeleton = this.configure.lastSkeleton;
         this.drawSkeleton(pose, skeleton);
-
+        //this.setEllipses(pose);
         return true;
+    }
+
+    setEllipses(pose) {
+        if (pose) {
+            for (var i = 0; i < pose.keypoints.length; i++) {
+                //console.log(pose);
+                if (pose.keypoints[i].score > 0.35) {
+                    fill(255);
+                    console.log("oeioei");
+                    ellipse(pose.keypoints[i].position.x, pose.keypoints[i].position.y, 20);
+                }
+            }
+        }
+
     }
 
     checkForStart() {
         if (wacht.state) {
             var pose = this.configure.lastPose;
-            
+
             if (pose) {
                 if (pose.keypoints[0].score > 0.8) {
                     this.tijdNeus++;
@@ -35,7 +49,7 @@ class Waiting {
                 }
                 console.log(this.tijdNeus);
 
-                if (this.tijdNeus == 1) {
+                if (this.tijdNeus == 2) {
                     console.log("laten we beginnen");
                     wacht.state = false;
                     game.state = true;

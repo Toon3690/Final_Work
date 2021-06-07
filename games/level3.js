@@ -6,10 +6,9 @@ class Level3 extends Game {
         this.bladeren = game.bladeren;
         this.circ = [];
         this.bodies = [];
-        this.audio = new Audio('blad.mp3');
-        this.audio.crossOrigin = 'anonymous';
 
-        this.audiostate = true;
+
+        this.audioState;
     }
 
     setAutumn() {
@@ -20,6 +19,7 @@ class Level3 extends Game {
             Matter.Composite.add(this.configure.engine.world, b);
 
         }
+
         return this.bodies;
     }
 
@@ -28,30 +28,46 @@ class Level3 extends Game {
         var pose = this.configure.lastPose;
         if (pose) {
             Matter.Composite.remove(this.configure.engine.world, this.circ);
-            this.circ = Matter.Bodies.circle(pose.nose.x, pose.nose.y, 20);
+            this.circ = Matter.Bodies.circle(pose.nose.x, pose.nose.y, 15);
             Matter.Composite.add(this.configure.engine.world, this.circ);
 
-
             //Stackoverflow/github
-            console.log(bodei.length);
+            //console.log(bodei.length);
             for (var i = 0; i < bodei.length; i++) {
                 var collision = Matter.SAT.collides(bodei[i], this.circ);
                 //sconsole.log("jaja");
-                if (collision.collided) {
+               /*  if (collision.collided) {
                     console.log("botsing");
-
-                    if(this.audiostate){
-                        this.audio.play();
+                    console.log(this.audioState);
+                    
+                    this.audio = new Audio('blad.mp3');
+                        this.audio.crossOrigin = 'anonymous';
+                        this.audio.play(); */
+                    
+                    /* if (this.audioState) {
+                        
                         this.audioState = false;
-                        if(this.audio.ended){
+                        this.audio.onended = function () {
                             this.audioState = true;
-                        }
-                    }
-                    
-                    
-                }
+
+                        };
+                    } */
+
+                //}
             }
 
+        }
+    }
+
+    setEllipses() {
+        var pose = this.configure.lastPose;
+        if (pose) {
+
+            stroke(0);
+            fill(255);
+
+            ellipseMode(CENTER);
+            ellipse(pose.nose.x, pose.nose.y, 30);
         }
     }
 

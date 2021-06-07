@@ -47,125 +47,89 @@ class Game {
     draw() {
 
         push();
-        translate(this.video.width, 0,-20);
+        translate(this.video.width, 0, -20);
         scale(-1, 1);
         image(this.video, 0, 0, this.video.width, this.video.height);
         pop();
+        console.log(frameRate());
+        let digit= mouseX
 
-        //this.drawTrees3D();
+        if(this.spring){
 
-        this.setEllipses();
-        //this.makeSun();
-        push();
-        //this.lvl1.drawTrees();
-        pop();
+            this.lvl1.setEllipses();
+           directionalLight(198,215,185, 0.7, -0.6, -1);
+            //directionalLight(198,215,185, 0.7, -0.6, -1); 
+        }else if(this.summer){
 
-        for (var i = 0; i < this.bomen.length; i++) {
-            this.bomen[i].makeTrees3();
+            this.lvl2.setEllipses();
+            directionalLight(173,255,47, -1, 0.3, -1);
+            //directionalLight(173,255,47, -1, 0.3, -1); 
+        }else if(this.autumn){
+
+            this.lvl3.setEllipses();
+            this.lvl3.setNose(this.bodei);
+           directionalLight(102,102,0, -0.6, -0.6, -1);
+            directionalLight(102,102,0, -0.6, -0.6, -1); 
         }
+
+        this.lvl1.drawTrees();
 
         image(this.graph, 0, 0);
 
-
-
         this.lvl2.setLeaves();
+    }
 
-         if(this.autumn){
-            this.lvl3.setNose(this.bodei);
-        } 
-
-        var pose = this.configure.lastPose;
-
-        /* if (pose) {
-            var x = map(pose.keypoints[0].position.x, 0, width, 50, -50);
-            var y = map(mouseY, 0, height, -200, 200);
-            camera(0, 0, 600, x, 0, 0, 0, 1, 0);
-
-        } */
-
-        }
-
-        onClick() {
-            //this.lvl1.setTrees();
-            this.lvl3.setNose();
-
-        }
-
-        checkSpring() {
-            if (this.spring) {
-                this.lvl1.setTrees();
-            }
-        }
-
-        checkSummer() {
-            if (this.summer) {
-                this.lvl2.makeLeaves();
-            }
-        }
-
-        checkAutumn() {
-            if (this.autumn) {
-                console.log("hier");
-                this.lvl3.setAutumn();
-            }
-        }
-
-        setEllipses() {
-            var pose = this.configure.lastPose;
-            if (pose) {
-
-                var lShoulderY = pose.keypoints[5].position.y;
-                var rShoulderY = pose.keypoints[6].position.y;
-
-                var shoulderMiddleX = (pose.keypoints[5].position.x + pose.keypoints[6].position.x)/2;
-                var shoulderMiddleY = (pose.keypoints[5].position.y + pose.keypoints[6].position.y)/2;
-
-                ellipse(shoulderMiddleX, shoulderMiddleY, 20);
-
-                stroke(255, 0, 0);
-                //console.log(pose);
-                if (pose.leftWrist.confidence > 0.35) {
-                    ellipse(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20);
-                } else if (pose.rightWrist.confidence > 0.35) {
-                    ellipse(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20);
-                }
-            }
-        }
-
-        updateTrees() {
-            console.log(this.bomen.length);
-            for (var i = 0; i < this.bomen.length; i++) {
-
-                this.bomen[i].makeTree();
-                this.bomen[i].makeBranches();
-                this.bomen[i].makeTree2();
-                this.bomen[i].makeBranches2();
-            }
-        }
-
-        makeSun() {
-            push();
-            strokeWeight(2);
-            stroke(255, 120, 20);
-            fill(250, 253, 15);
-            translate(0, 0);
-            ellipse(20, 20, 120, 120);
-            pop();
-        }
-
-
-        doSpring() {
-            this.lvl1.setTrees();
-        }
-
-        doSummer() {
-            this.lvl2.makeLeaves();
-        }
-
-        doAutumn() {
-           var bodies = this.lvl3.setAutumn();
-           this.bodei = bodies;
-            console.log("hs");
-        }
+    onClick() {
+        //this.lvl1.setTrees();
+        //this.lvl3.setNose();
 
     }
+
+    checkSpring() {
+        if (this.spring) {
+            this.lvl1.setTrees();
+        }
+    }
+
+    checkSummer() {
+        if (this.summer) {
+            this.lvl2.makeLeaves();
+        }
+    }
+
+    checkAutumn() {
+        if (this.autumn) {
+            console.log("hier");
+            var bodies = this.lvl3.setAutumn();
+            this.bodei = bodies;
+        }
+    }
+
+    
+
+    updateTrees() {
+        console.log(this.bomen.length);
+        for (var i = 0; i < this.bomen.length; i++) {
+
+            this.bomen[i].makeTree();
+            this.bomen[i].makeBranches();
+            this.bomen[i].makeTree2();
+            this.bomen[i].makeBranches2();
+        }
+    }
+
+    doSpring() {
+        this.lvl1.setTrees();
+    }
+
+    doSummer() {
+        this.lvl2.makeLeaves();
+    }
+
+    doAutumn() {
+        var bodies = this.lvl3.setAutumn();
+        this.bodei = bodies;
+        console.log("hs");
+    }
+
+}
