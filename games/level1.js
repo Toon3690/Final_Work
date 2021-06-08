@@ -34,6 +34,7 @@ class Level1 extends Game {
     }
 
     setEllipses() {
+        console.log("jajajajjaja");
         var pose = this.configure.lastPose;
         if (pose) {
 
@@ -41,7 +42,7 @@ class Level1 extends Game {
             var shoulderMiddleY = (pose.keypoints[5].position.y + pose.keypoints[6].position.y) / 2;
 
             //strokeWeight(5);
-            stroke(0);
+            noStroke();
             fill(255);
             ellipse(shoulderMiddleX, shoulderMiddleY, 20);  
 

@@ -23,7 +23,7 @@ class Configure {
         var canvas = createCanvas(740, 580, WEBGL);
         canvas.position((windowWidth - width) / 2, (windowHeight - height) / 2);
 
-        frameRate(60);
+        frameRate(40);
         rectMode(CENTER);
         this.graph = createGraphics(640, 480);
 

@@ -10,17 +10,16 @@ let state = 0;
 
 let keer1 = true;
 
-let klassen = [];
 
 function setup() {
     wood = loadImage("wood.jpg");
     gold = loadImage("gold.jpg");
 
-    klassen.push(conf1 = new Configure());
+    conf1 = new Configure();
     start = conf1.setup();
     /* var audio = new Audio('nature.wav');
     audio.crossOrigin = 'anonymous'; */
-    
+
 
     /* audio.muted = true;
     audio.play();
@@ -28,19 +27,20 @@ function setup() {
     audio.play(); */
 
     if (start) {
-        klassen.push(wacht = new Waiting(conf1));
+        wacht = new Waiting(conf1);
         //wacht.setup();
         wacht.state = true;
         setInterval(() => wacht.checkForStart(), 1000);
 
-        klassen.push(game = new Game(conf1));
+        game = new Game(conf1);
+        game.setAudio();
         game.setImages();
-        setInterval(() => game.checkSpring(), 4000);
+        setInterval(() => game.checkSpring(), 5000);
         setInterval(() => game.checkSummer(), 400);
 
         setInterval(() => this.checkStart(), 500);
 
-        klassen.push(ending = new Ending());
+        ending = new Ending();
     }
 }
 
@@ -53,11 +53,11 @@ function draw() {
     pop();
     //Matter.Engine.update(conf1.engine);
 
-   pointLight(250, 250, 250, 0, -300, 200);
+    pointLight(250, 250, 250, 0, -300, 200);
     //pointLight(250, 250, 250, 0, -300, 200);
     noStroke();
 
-     /* if (game.state) {
+    /* if (game.state) {
         var pose = conf1.lastPose;
 
         if (pose) {
@@ -116,37 +116,79 @@ function frame() {
 }
 
 function checkStart() {
+
+
+
     if (!wacht.state && keer1) {
+
+        var audio1 = new Audio('Audio/nature.wav');
+        audio1.volume = 0.6;
+        audio1.crossOrigin = 'anonymous';
+        audio1.play();
+
         setTimeout(function () {
+            var audio2 = new Audio('Audio/intro.m4a');
+            audio2.crossOrigin = 'anonymous';
+            audio2.play();
+            game.beforeStart1 = true;
+        }, 2000);
+        setTimeout(function () {
+            var audio = new Audio('Audio/lente.m4a');
+            audio.crossOrigin = 'anonymous';
+            audio.play();
+
+            game.beforeStart1 = false;
+            game.beforeStart2 = true;
+        }, 22500);
+        setTimeout(function () {
+            game.beforeStart2 = false;
             game.spring = true;
             game.summer = false;
             game.autumn = false;
-
-        }, 100);
+            
+            directionalLight(198,215,185, 0.7, -0.6, -1);
+        }, 38000);
+        setTimeout(function () {
+            game.spring = false;
+            var audio = new Audio('Audio/zomer.m4a');
+            audio.crossOrigin = 'anonymous';
+            audio.play();
+        }, 54000);
         setTimeout(function () {
             game.img1 = get(50, 50, 640, 480);
             game.spring = false;
             game.summer = true;
             game.autumn = false;
-        }, 15000);
+            directionalLight(173,255,47, -1, 0.3, -1);
+        }, 64000);
+        setTimeout(function () {
+            game.summer = false;
+            var audio = new Audio('Audio/herfst.m4a');
+            audio.crossOrigin = 'anonymous';
+            audio.play();
+        }, 88000);
         setTimeout(function () {
             game.img2 = get(50, 50, 640, 480);
             game.spring = false;
             game.summer = false;
             game.autumn = true;
+            directionalLight(102,102,0, -0.6, -0.6, -1);
+            directionalLight(102,102,0, -0.6, -0.6, -1); 
             game.checkAutumn();
-        }, 30000);
+        }, 99000);
         setTimeout(function () {
             game.img3 = get(50, 50, 640, 480);
             game.img4 = get(50, 50, 640, 480);
             game.state = false;
             ending.state = true;
-
-        }, 90000);
+            var audio = new Audio('Audio/einde.m4a');
+            audio.crossOrigin = 'anonymous';
+            audio.play();
+        }, 120000);
         setTimeout(function () {
             game.state = false;
             ending.state = false;
-        }, 100000);
+        }, 135000);
         keer1 = false;
     }
 }

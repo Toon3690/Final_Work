@@ -1,5 +1,5 @@
 class Level3 extends Game {
-    constructor(configure) {
+    constructor(configure, state) {
         super(configure);
         this.bomen = game.bomen;
         this.teller = game.teller;
@@ -7,8 +7,8 @@ class Level3 extends Game {
         this.circ = [];
         this.bodies = [];
 
-
-        this.audioState;
+        this.audioState = state;
+        
     }
 
     setAutumn() {
@@ -36,39 +36,38 @@ class Level3 extends Game {
             for (var i = 0; i < bodei.length; i++) {
                 var collision = Matter.SAT.collides(bodei[i], this.circ);
                 //sconsole.log("jaja");
-               /*  if (collision.collided) {
-                    console.log("botsing");
-                    console.log(this.audioState);
+                if (collision.collided) {
+                    //console.log("botsing");
+                    console.log(game.audioState);
+
+                    this.audio = new Audio('Audio/blad.mp3');
+                    this.audio.crossOrigin = 'anonymous';
                     
-                    this.audio = new Audio('blad.mp3');
-                        this.audio.crossOrigin = 'anonymous';
-                        this.audio.play(); */
-                    
-                    /* if (this.audioState) {
-                        
-                        this.audioState = false;
+                    if (game.audioState) {
+                        this.audio.play();
+                        game.audioState = false;
                         this.audio.onended = function () {
-                            this.audioState = true;
-
+                            game.audioState = true;
+                            console.log("tis vanda");
                         };
-                    } */
+                    }
 
-                //}
+                    }
+                }
+
             }
-
         }
-    }
 
-    setEllipses() {
-        var pose = this.configure.lastPose;
-        if (pose) {
+        setEllipses() {
+            var pose = this.configure.lastPose;
+            if (pose) {
 
-            stroke(0);
-            fill(255);
+                stroke(0);
+                fill(255);
 
-            ellipseMode(CENTER);
-            ellipse(pose.nose.x, pose.nose.y, 30);
+                ellipseMode(CENTER);
+                ellipse(pose.nose.x, pose.nose.y, 30);
+            }
         }
-    }
 
-}
+    }

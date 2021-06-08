@@ -125,7 +125,7 @@ class Trees {
         texture(this.tree)
         translate(this.posZeroX, this.posZeroY+225, -25);
         //translate(this.posZeroX, 300+225, -25);
-        box(20, 450, 30);
+        box(20, 450, 15);
         
         this.branch2(150);
         pop();
@@ -142,7 +142,7 @@ class Trees {
         translate(0, -200);
         translate(X, -Y);
         rotate(rota);
-        box(20, len, 30);
+        box(20, len, 15);
         
         push();
         var rota2 = 0.6;
@@ -151,7 +151,7 @@ class Trees {
         translate(0, -len/2+25);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/1.5, 30);
+        box(20, len/1.5, 15);
 
         push();
         var rota2 = 0.3;
@@ -160,7 +160,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
 
         push();
@@ -170,7 +170,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
 
         pop();
@@ -183,7 +183,7 @@ class Trees {
         translate(0, -len/2+25);
         translate(X3, -Y3);
         rotate(rota3);
-        box(20, len/1.5, 30);
+        box(20, len/1.5, 15);
         push();
         var rota2 = 0.3;
         var X2 = sin(rota2) * len/6;
@@ -191,7 +191,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
 
         push();
@@ -201,7 +201,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
         pop();
         pop();
@@ -216,7 +216,7 @@ class Trees {
         translate(0, -200);
         translate(X, -Y);
         rotate(rota);
-        box(20, len, 30);
+        box(20, len, 15);
         
         push();
         var rota2 = 0.6;
@@ -225,7 +225,7 @@ class Trees {
         translate(0, -len/2+25);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/1.5, 30);
+        box(20, len/1.5, 15);
 
         push();
         var rota2 = 0.3;
@@ -234,7 +234,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
 
         push();
@@ -244,7 +244,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
 
         pop();
@@ -257,7 +257,7 @@ class Trees {
         translate(0, -len/2+25);
         translate(X3, -Y3);
         rotate(rota3);
-        box(20, len/1.5, 30);
+        box(20, len/1.5, 15);
         push();
         var rota2 = 0.3;
         var X2 = sin(rota2) * len/6;
@@ -265,7 +265,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
 
         push();
@@ -275,7 +275,7 @@ class Trees {
         translate(0, -len/4);
         translate(X2, -Y2);
         rotate(rota2);
-        box(20, len/2, 30);
+        box(20, len/2, 15);
         pop();
         pop();
         pop();
