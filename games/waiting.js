@@ -26,12 +26,15 @@ class Waiting {
     setEllipses(pose) {
         if (pose) {
             for (var i = 0; i < pose.keypoints.length; i++) {
+                noStroke();
+                    fill(255);
+                    ellipse(pose.keypoints[i].position.x, pose.keypoints[i].position.y, 20);
                 //console.log(pose);
-                if (pose.keypoints[i].score > 0.40) {
+                /* if (pose.keypoints[i].score > 0.40) {
                     noStroke();
                     fill(255);
                     ellipse(pose.keypoints[i].position.x, pose.keypoints[i].position.y, 20);
-                }
+                } */
             }
         }
 
@@ -42,7 +45,7 @@ class Waiting {
             var pose = this.configure.lastPose;
 
             if (pose) {
-                if (pose.keypoints[0].score > 0.8) {
+                if (pose.keypoints[0].score > 0.65) {
                     this.tijdNeus++;
                 } else {
                     this.tijdNeus = 0;

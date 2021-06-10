@@ -173,7 +173,7 @@ class Game {
             var shoulderMiddleY = (pose.keypoints[5].position.y + pose.keypoints[6].position.y) / 2;
 
             //strokeWeight(5);
-            stroke(0);
+            noStroke();
             fill(255);
             ellipse(shoulderMiddleX, shoulderMiddleY, 20);
             ellipse(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20);

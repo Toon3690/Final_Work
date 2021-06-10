@@ -35,7 +35,7 @@ function setup() {
         game = new Game(conf1);
         game.setAudio();
         game.setImages();
-        setInterval(() => game.checkSpring(), 5000);
+        setInterval(() => game.checkSpring(), 6000);
         setInterval(() => game.checkSummer(), 400);
 
         setInterval(() => this.checkStart(), 500);
@@ -153,20 +153,20 @@ function checkStart() {
             var audio = new Audio('Audio/zomer.m4a');
             audio.crossOrigin = 'anonymous';
             audio.play();
-        }, 54000);
+        }, 57000);
         setTimeout(function () {
             game.img1 = get(50, 50, 640, 480);
             game.spring = false;
             game.summer = true;
             game.autumn = false;
             directionalLight(173,255,47, -1, 0.3, -1);
-        }, 64000);
+        }, 66000);
         setTimeout(function () {
             game.summer = false;
             var audio = new Audio('Audio/herfst.m4a');
             audio.crossOrigin = 'anonymous';
             audio.play();
-        }, 88000);
+        }, 98000);
         setTimeout(function () {
             game.img2 = get(50, 50, 640, 480);
             game.spring = false;
@@ -175,7 +175,7 @@ function checkStart() {
             directionalLight(102,102,0, -0.6, -0.6, -1);
             directionalLight(102,102,0, -0.6, -0.6, -1); 
             game.checkAutumn();
-        }, 99000);
+        }, 109000);
         setTimeout(function () {
             game.img3 = get(50, 50, 640, 480);
             game.img4 = get(50, 50, 640, 480);
@@ -184,11 +184,11 @@ function checkStart() {
             var audio = new Audio('Audio/einde.m4a');
             audio.crossOrigin = 'anonymous';
             audio.play();
-        }, 120000);
+        }, 135000);
         setTimeout(function () {
             game.state = false;
             ending.state = false;
-        }, 135000);
+        }, 150000);
         keer1 = false;
     }
 }

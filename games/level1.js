@@ -44,14 +44,15 @@ class Level1 extends Game {
             //strokeWeight(5);
             noStroke();
             fill(255);
-            ellipse(shoulderMiddleX, shoulderMiddleY, 20);  
-
-            if (pose.leftWrist.confidence > 0.35) {
+            ellipse(shoulderMiddleX, shoulderMiddleY, 25);  
+            ellipse(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 25);
+            ellipse(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 25);
+            /* if (pose.leftWrist.confidence > 0.35) {
                 ellipse(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20);
             } 
             if (pose.rightWrist.confidence > 0.35) {
                 ellipse(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20);
-            }
+            } */
         }
     }
 }

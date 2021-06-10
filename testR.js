@@ -46,7 +46,7 @@ function setup() {
 
     // Canvas + framerate
      canv = createCanvas(640, 480);
-    frameRate(40);
+    frameRate(60);
 
     // Setup webcam
     video = createCapture(VIDEO);
@@ -121,7 +121,7 @@ function drawEllipses(){
         for (let i = 0; i < pose.keypoints.length; i++) {
             let key = pose.keypoints[i];
             //console.log(key.position.y);
-            if (key.score > 0.6) {
+            if (key.score > 0.4) {
                 fill(255, 255, 0);
                 ellipse(key.position.x, key.position.y, 20);
             }
