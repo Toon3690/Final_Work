@@ -10,10 +10,10 @@ class Test2 {
             isStatic: this.stat,
             frictionAir: this.air
         }
-        this.texture = loadImage("leafTexture.jpg");
+        this.texture = loadImage("images/leafTexture.jpg");
 
     }
- 
+
     add(stati) {
         this.body = Matter.Bodies.rectangle(this.a, this.b, this.c, this.d, {
             isStatic: stati,
@@ -28,8 +28,13 @@ class Test2 {
     }
 
     isOffScreen() {
-        var pos = this.body.position;
-        return (pos.y > height + 100);
+        try {
+            var pos = this.body.position;
+            return (pos.y > height + 100);
+        } catch (error) {
+            
+        }
+           
     }
 
     removeFromWorld(world) {
@@ -37,23 +42,30 @@ class Test2 {
     }
 
     show() {
-        var pos = this.body.position;
-        var angle = this.body.angle;
+try {
+    var pos = this.body.position;
+            var angle = this.body.angle;
+
+            push();
+
+            translate(pos.x, pos.y, 50);
+            rectMode(CENTER);
+            rotate(angle);
+            strokeWeight(1);
+            stroke(34, 139, 34);
+            noStroke();
+            fill(58, 95, 11);
+            rect(0, 0, this.c, this.d);
+            texture(this.texture);
+            plane(20, 20);
+
+            pop();
+} catch (error) {
+    
+}
+            
         
-        push();
 
-        translate(pos.x, pos.y,50);
-        rectMode(CENTER);
-        rotate(angle);
-        strokeWeight(1);
-        stroke(34, 139, 34);
-        noStroke();
-        fill(58, 95, 11);
-        rect(0, 0, this.c, this.d);
-        //texture(this.texture);
-        plane(20,20);
-
-        pop(); 
     }
 
 }

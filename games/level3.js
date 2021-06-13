@@ -1,6 +1,6 @@
 class Level3 extends Game {
-    constructor(configure, state) {
-        super(configure);
+    constructor(state) {
+        super();
         this.bomen = game.bomen;
         this.teller = game.teller;
         this.bladeren = game.bladeren;
@@ -8,66 +8,58 @@ class Level3 extends Game {
         this.bodies = [];
 
         this.audioState = state;
-        
+
     }
 
+    // Voeg alle bladeren toe aan de wereld en laat ze vallen
     setAutumn() {
         for (var i = 0; i < this.bladeren.length; i++) {
             var b = this.bladeren[i].add(false);
             this.bodies.push(b);
-            //console.log(this.bodies.length);
-            Matter.Composite.add(this.configure.engine.world, b);
-
+            Matter.Composite.add(conf1.engine.world, b);
         }
-
         return this.bodies;
     }
 
-
+    // update de cirkel van de neus, ga daarna kijken of deze botst met één van de bladeren
+    // Als deze botst speel dan het ritsel geluid af, zorg ervoor dat het geluid pas terug kan starten als het vorige afgelopen is
     setNose(bodei) {
-        var pose = this.configure.lastPose;
+        var pose = conf1.lastPose;
         if (pose) {
-            Matter.Composite.remove(this.configure.engine.world, this.circ);
+            Matter.Composite.remove(conf1.engine.world, this.circ);
             this.circ = Matter.Bodies.circle(pose.nose.x, pose.nose.y, 15);
-            Matter.Composite.add(this.configure.engine.world, this.circ);
+            Matter.Composite.add(conf1.engine.world, this.circ);
 
-            //Stackoverflow/github
-            //console.log(bodei.length);
             for (var i = 0; i < bodei.length; i++) {
                 var collision = Matter.SAT.collides(bodei[i], this.circ);
-                //sconsole.log("jaja");
-                if (collision.collided) {
-                    //console.log("botsing");
-                    console.log(game.audioState);
 
-                    this.audio = new Audio('Audio/blad.mp3');
-                    this.audio.crossOrigin = 'anonymous';
-                    
+                if (collision.collided) {
+
                     if (game.audioState) {
+                        this.audio = new Audio('Audio/blad.mp3');
+                        this.audio.crossOrigin = 'anonymous';
                         this.audio.play();
                         game.audioState = false;
                         this.audio.onended = function () {
                             game.audioState = true;
-                            console.log("tis vanda");
                         };
                     }
 
-                    }
                 }
-
-            }
-        }
-
-        setEllipses() {
-            var pose = this.configure.lastPose;
-            if (pose) {
-
-                stroke(0);
-                fill(255);
-
-                ellipseMode(CENTER);
-                ellipse(pose.nose.x, pose.nose.y, 30);
             }
         }
 
     }
+
+    // Teken cirkel op de neus
+    setEllipses() {
+        var pose = this.configure.lastPose;
+        if (pose) {
+            stroke(0);
+            fill(255);
+            ellipseMode(CENTER);
+            ellipse(pose.nose.x, pose.nose.y, 30);
+        }
+    }
+
+}

@@ -1,6 +1,7 @@
 html,body{
     height: 100%;
-    background-color: transparent;
+
+
 }
 
 body{
@@ -12,4 +13,6 @@ body{
 
     /* This centers our sketch vertically. */
     align-items: center;
+
+    background: url(images/wall.jpg);
 }
