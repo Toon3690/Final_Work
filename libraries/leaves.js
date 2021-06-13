@@ -1,4 +1,5 @@
-class Test2 {
+// Geïnspireerd door video's van the coding train https://youtube.com/playlist?list=PLRqwX-V7Uu6bLh3T_4wtrmVHOrOEM1ig_
+class Leaf {
     constructor(a, b, c, d, stat, air, ran) {
         this.a = a;
         this.b = b;
@@ -11,7 +12,6 @@ class Test2 {
             frictionAir: this.air
         }
         this.texture = loadImage("images/leafTexture.jpg");
-
     }
 
     add(stati) {
@@ -32,9 +32,8 @@ class Test2 {
             var pos = this.body.position;
             return (pos.y > height + 100);
         } catch (error) {
-            
+            console.log(error);
         }
-           
     }
 
     removeFromWorld(world) {
@@ -42,12 +41,11 @@ class Test2 {
     }
 
     show() {
-try {
-    var pos = this.body.position;
+        try {
+            var pos = this.body.position;
             var angle = this.body.angle;
 
             push();
-
             translate(pos.x, pos.y, 50);
             rectMode(CENTER);
             rotate(angle);
@@ -58,14 +56,11 @@ try {
             rect(0, 0, this.c, this.d);
             texture(this.texture);
             plane(20, 20);
-
             pop();
-} catch (error) {
-    
-}
-            
-        
 
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 }

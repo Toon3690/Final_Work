@@ -1,17 +1,15 @@
 let conf1;
-let wacht;
+let wait;
 
 let poses = [0, 1, 2, 3];
 
 let start = false;
-//let state = 0;
 let keer1 = true;
-
 
 function setup() {
 
     //Materiaal voor omlijsting schilderij
-    gold = loadImage("images/gold.jpg");
+    textureFrame = loadImage("images/frame.jpg");
 
     //Initialiseer en doe setup
     conf1 = new Configure();
@@ -19,14 +17,14 @@ function setup() {
 
     //Als configure is uitgevoerd gaan we de andere klasses aanmaken
     if (start) {
-        wacht = new Waiting(conf1);
-        wacht.state = true;
+        wait = new Waiting(conf1);
+        wait.state = true;
         // Kijk of de gebruiker lang voor de installatie blijft staan
-        setInterval(() => wacht.checkForStart(), 1000);
+        setInterval(() => wait.checkForStart(), 1000);
 
         game = new Game(conf1);
         game.setup();
-        game.setAudio();
+        //game.setAudio();
         game.setImages();
         setInterval(() => game.checkSpring(), 6000);
         setInterval(() => game.checkSummer(), 400);
@@ -52,14 +50,13 @@ function draw() {
     frame();
 }
 
-
 // Maak de omlijsting van een schilderij
 // Inspiratie gehaald uit https://editor.p5js.org/rw1693/sketches/fa7kC4PTP
 function frame() {
     push();
     noStroke();
     translate(0, 0, 0);
-    texture(gold);
+    texture(textureFrame);
 
     push();
     translate(350, 0, 0);
@@ -94,7 +91,7 @@ function checkStart() {
     // Na het wachtscherm gaan we naar de spelmodus
     // Start de achtergrondmuziek
     // Voer de volgende functies uit opeenvolgend en na een bepaalde tijd
-    if (!wacht.state && keer1) {
+    if (!wait.state && keer1) {
         var audio1 = new Audio('Audio/nature.wav');
         audio1.volume = 0.6;
         audio1.crossOrigin = 'anonymous';
@@ -134,7 +131,6 @@ function checkStart() {
             game.springSun = false;
             game.summerSun = true;
             game.summer = true;
-            directionalLight(173, 255, 47, -1, 0.3, -1);
         }, 66000);
         setTimeout(function () {
             game.summer = false;
@@ -147,10 +143,8 @@ function checkStart() {
             game.summerSun = false;
             game.autumnSun = true;
             game.autumn = true;
-            directionalLight(102, 102, 0, -0.6, -0.6, -1);
-            directionalLight(102, 102, 0, -0.6, -0.6, -1);
             game.checkAutumn();
-        }, 109000);
+        }, 107000);
         setTimeout(function () {
             game.img3 = get(40, 40, 640, 480);
             game.img4 = get(40, 40, 640, 480);
@@ -173,20 +167,16 @@ function checkStart() {
 // Kijk bij elke frame of er naar de volgende klasse kan worden doorgegaan.
 function cycle() {
     if (start) {
-        if (wacht.state) {
-            wacht.draw(conf1.lastPoses);
-            //wacht.slideShow();
+        if (wait.state) {
+            wait.draw(conf1.lastPoses);
         } else {
-            if (game.state) {
-                
-                    game.draw(conf1.video);
-                
-                
+            if (game.state) { 
+                    game.draw(conf1.video);    
             } else {
                 if (ending.state) {
                     ending.draw()
                 } else {
-                    wacht.state = false;
+                    wait.state = false;
                     game.state = false;
                     ending.state = false;
                     location.reload();
@@ -195,39 +185,3 @@ function cycle() {
         }
     }
 }
-
-/* function mouseClicked() {
-    game.onClick();
-} */
-
-/* function keyPressed() {
-    if (keyCode == 97) {
-        wacht.state = true;
-        game.state = false;
-        ending.state = false;
-    } else if (keyCode == 98) {
-        wacht.state = false;
-        game.state = true;
-        ending.state = false;
-    } else if (keyCode == 99) {
-        wacht.state = false;
-        game.state = false;
-        ending.state = true;
-    } else if (keyCode == 76) {
-        game.spring = true;
-        game.summer = false;
-        game.autumn = false;
-        game.doSpring();
-    } else if (keyCode == 83) {
-        game.spring = false;
-        game.summer = true;
-        game.autumn = false;
-        game.doSummer();
-    } else if (keyCode == 65) {
-        game.spring = false;
-        game.summer = false;
-        game.autumn = true;
-        game.doAutumn();
-    }
-    console.log(keyCode);
-} */

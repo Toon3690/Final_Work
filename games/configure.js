@@ -10,10 +10,7 @@ class Configure {
         };
 
         this.engine;
-
         this._lastPose = null;
-        this._lastSkeleton = null;
-
         this.state;
     }
 
@@ -22,12 +19,9 @@ class Configure {
         // P5 JS
         var canvas = createCanvas(740, 580, WEBGL);
         canvas.position((windowWidth - width) / 2, (windowHeight - height) / 2);
-
         frameRate(40);
         rectMode(CENTER);
-        this.graph = createGraphics(640, 480);
 
-        //this.graph.translate(-width/2,-height/2,0);
         // For Posenet
         this.video = createCapture(VIDEO);
         this.video.size(640, 480);
@@ -48,14 +42,9 @@ class Configure {
         return this._lastPose;
     }
 
-    get lastSkeleton(){
-        return this._lastSkeleton;
-    }
-
     gotPoses(results) {
         if (results.length > 0) {
             this._lastPose = results[0].pose;
-            this._lastSkeleton = results[0].skeleton;
         }
     }
 }

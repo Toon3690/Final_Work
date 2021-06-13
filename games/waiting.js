@@ -2,10 +2,10 @@ class Waiting {
     constructor(configure) {
         this.configure = configure;
         this.state = false;
-        this.tijdNeus = 0;
+        this.timeNose = 0;
         this.img;
         this.images = [loadImage('images/test1.png'), loadImage('images/test2.png'), loadImage('images/test3.png'), loadImage('images/test4.png')];
-        this.teller = 0;
+        this.counter = 0;
     }
 
 
@@ -15,17 +15,16 @@ class Waiting {
         return true;
     }
 
-
+    // Als er zich niemand voor het spel bevindt speel dan de kunstwerken van vorige bezoekers af
     slideShow() {
 
-        if (this.teller == this.images.length) {
-            this.teller = 0;
+        if (this.counter == this.images.length) {
+            this.counter = 0;
         }
-
-        image(this.images[this.teller], 0, 0, 640, 480);
+        image(this.images[this.counter], 0, 0, 640, 480);
 
         if (frameCount % 200 == 0) {
-            this.teller++;
+            this.counter++;
         }
 
     }
@@ -50,18 +49,18 @@ class Waiting {
     // Als de neus wordt waargenomen telt er 1 seconden bij, als deze niet wordt waargenomen gaat de teller terug naar 0
     // Als 15 wordt gehaald is het wachtscherm over en gaan we over naar de spelmodus
     checkForStart() {
-        if (wacht.state) {
+        if (wait.state) {
             var pose = this.configure.lastPose;
             if (pose) {
                 if (pose.keypoints[0].score > 0.65) {
-                    this.tijdNeus++;
+                    this.timeNose++;
                 } else {
-                    this.tijdNeus = 0;
+                    this.timeNose = 0;
                 }
-                console.log(this.tijdNeus);
-                if (this.tijdNeus == 3) {
+                console.log(this.timeNose);
+                if (this.timeNose == 3) {
                     console.log("laten we beginnen");
-                    wacht.state = false;
+                    wait.state = false;
                     game.state = true;
                 }
             }

@@ -2,18 +2,18 @@ class Level2 extends Game {
     constructor() {
         super();
         this.bomen = game.bomen;
-        this.leafTeller = game.leafTeller;
-        this.bladeren = game.bladeren;
+        this.leafCounter = game.leafCounter;
+        this.leaves = game.leaves;
     }
 
     // Teken bladeren en update
     setLeaves() {
         
-            for (var i = 0; i < game.bladeren.length; i++) {
-                game.bladeren[i].show();
-                if (game.bladeren[i].isOffScreen()) {
-                    game.bladeren[i].removeFromWorld(conf1.engine.world);
-                    game.bladeren.splice(i, 1);
+            for (var i = 0; i < game.leaves.length; i++) {
+                game.leaves[i].show();
+                if (game.leaves[i].isOffScreen()) {
+                    game.leaves[i].removeFromWorld(conf1.engine.world);
+                    game.leaves.splice(i, 1);
                     i--;
                 }
             }
@@ -26,12 +26,12 @@ class Level2 extends Game {
 
         var pose = conf1.lastPose;
         if (pose) {
-            game.bladeren.push(new Test2(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20, 20, true, 1));
-            game.bladeren[this.leafTeller].add(true);
-            game.leafTeller++;
-            game.bladeren.push(new Test2(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20, 20, true, 1));
-            game.bladeren[game.leafTeller].add(true);
-            game.leafTeller++;
+            game.leaves.push(new Leaf(pose.keypoints[9].position.x, pose.keypoints[9].position.y, 20, 20, true, 1));
+            game.leaves[this.leafCounter].add(true);
+            game.leafCounter++;
+            game.leaves.push(new Leaf(pose.keypoints[10].position.x, pose.keypoints[10].position.y, 20, 20, true, 1));
+            game.leaves[game.leafCounter].add(true);
+            game.leafCounter++;
         }
     }
 

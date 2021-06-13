@@ -2,8 +2,8 @@ class Level3 extends Game {
     constructor(state) {
         super();
         this.bomen = game.bomen;
-        this.teller = game.teller;
-        this.bladeren = game.bladeren;
+        this.counter = game.counter;
+        this.leaves = game.leaves;
         this.circ = [];
         this.bodies = [];
 
@@ -13,8 +13,8 @@ class Level3 extends Game {
 
     // Voeg alle bladeren toe aan de wereld en laat ze vallen
     setAutumn() {
-        for (var i = 0; i < this.bladeren.length; i++) {
-            var b = this.bladeren[i].add(false);
+        for (var i = 0; i < this.leaves.length; i++) {
+            var b = this.leaves[i].add(false);
             this.bodies.push(b);
             Matter.Composite.add(conf1.engine.world, b);
         }

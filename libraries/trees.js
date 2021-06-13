@@ -9,6 +9,8 @@ class Trees {
         this.posWristLY = posWristLY;
         this.posWristRX = posWristRX;
         this.posWristRY = posWristRY;
+
+        // Maak vectors van deze hoeken en ga kijken wat de hoek hiertussen is
         this.v0 = createVector(0, 0);
         this.v1 = createVector(500, 0);
         this.v2 = createVector(posWristLX - posZeroX, posWristLY - posZeroY);

@@ -2,7 +2,6 @@ class Game {
     constructor() {
 
         this.video = conf1.video;
-        this.graph = conf1.graph;
 
         this.spring = false;
         this.summer = false;
@@ -25,11 +24,11 @@ class Game {
         this.img3;
         this.img4;
 
-        this.bomen = [];
-        this.bladeren = [];
+        this.trees = [];
+        this.leaves = [];
 
-        this.leafTeller = 0;
-        this.teller = 0;
+        this.leafCounter = 0;
+        this.counter = 0;
 
         this.body;
 
@@ -37,7 +36,6 @@ class Game {
         this.state;
 
         this.audioState;
-
     }
 
     // zet de audioState op true voor het ritselen van de bladeren in het 3de seizoen
@@ -51,6 +49,7 @@ class Game {
         this.lvl1 = new Level1();
         this.lvl2 = new Level2();
         this.lvl3 = new Level3();
+        this.audioState = true;
         return true;
     }
 
@@ -106,7 +105,7 @@ class Game {
         this.lvl2.setLeaves();
     }
 
-    // Check om de zoveel tijd of spring true is
+    // Check of de seizoenen true zijn
     checkSpring() {
         if (this.spring) {
             this.lvl1.setTrees();

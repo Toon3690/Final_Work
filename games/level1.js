@@ -1,9 +1,8 @@
 class Level1 extends Game {
     constructor() {
         super();
-        this.bomen = game.bomen;
+        this.trees = game.trees;
         this.teller = game.teller;
-        this.bladeren = game.bladeren;
     }
 
     // initialiseer nieuwe boom en steek deze in de array
@@ -14,18 +13,16 @@ class Level1 extends Game {
             var name = "boom" + this.teller;
             var shoulderMiddleX = (pose.keypoints[5].position.x + pose.keypoints[6].position.x) / 2;
             var shoulderMiddleY = (pose.keypoints[5].position.y + pose.keypoints[6].position.y) / 2;
-
             name = new Trees(shoulderMiddleX, shoulderMiddleY, pose.keypoints[9].position.x, pose.keypoints[9].position.y, pose.keypoints[10].position.x, pose.keypoints[10].position.y);
-            this.bomen.push(name);
-
+            this.trees.push(name);
             game.teller++;
         }
     }
 
     // Teken de bomen
     drawTrees() {
-        for (var i = 0; i < this.bomen.length; i++) {
-            this.bomen[i].makeTrees();
+        for (var i = 0; i < this.trees.length; i++) {
+            this.trees[i].makeTrees();
         }
     }
 
