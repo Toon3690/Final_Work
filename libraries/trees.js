@@ -10,7 +10,7 @@ class Trees {
         this.posWristRX = posWristRX;
         this.posWristRY = posWristRY;
 
-        // Maak vectors van deze hoeken en ga kijken wat de hoek hiertussen is
+        // Maak vectors van deze hoeken en ga kijken wat de hoek hiertussen is, uitgedrukt in radians
         this.v0 = createVector(0, 0);
         this.v1 = createVector(500, 0);
         this.v2 = createVector(posWristLX - posZeroX, posWristLY - posZeroY);
@@ -33,7 +33,7 @@ class Trees {
         pop();
     }
 
-    // Teken de takken
+    // Teken de takken, moet nog goed geschreven worden
     branch(len){
 
         push();

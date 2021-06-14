@@ -58,7 +58,7 @@ class Waiting {
                     this.timeNose = 0;
                 }
                 console.log(this.timeNose);
-                if (this.timeNose == 3) {
+                if (this.timeNose == 15) {
                     console.log("laten we beginnen");
                     wait.hasState = false;
                     game.hasState = true;

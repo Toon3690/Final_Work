@@ -19,12 +19,17 @@ function setup() {
     if (isStart) {
         wait = new Waiting(conf1);
         wait.hasState = true;
+
         // Kijk of de gebruiker lang voor de installatie blijft staan
         setInterval(() => wait.checkForStart(), 1000);
 
         game = new Game(conf1);
         game.setup();
         game.setImages();
+
+        // Plant een boom om de 6 seconden als spring true is
+        // Hang een blad om de 0,4 seconden als summer true is
+        // Kijk om de 0,5 seconden of er kan begonnen worden aan het spel
         setInterval(() => game.checkSpring(), 6000);
         setInterval(() => game.checkSummer(), 400);
         setInterval(() => this.checkStart(), 500);
@@ -125,7 +130,7 @@ function checkStart() {
             audio.play();
         }, 57000);
         setTimeout(function () {
-            game.img1 = get(50, 50, 610, 470);
+            game.img1 = get(57, 50, 610, 470);
             game.springSun = false;
             game.summerSun = true;
             game.summer = true;
@@ -137,15 +142,15 @@ function checkStart() {
             audio.play();
         }, 98000);
         setTimeout(function () {
-            game.img2 = get(50, 50, 610, 470);
+            game.img2 = get(57, 50, 610, 470);
             game.summerSun = false;
             game.autumnSun = true;
             game.autumn = true;
             game.checkAutumn();
         }, 107000);
         setTimeout(function () {
-            game.img3 = get(50, 50, 610, 470);
-            game.img4 = get(50, 50, 610, 470);
+            game.img3 = get(57, 50, 610, 470);
+            game.img4 = get(57, 50, 610, 470);
             game.springSun = false;
             game.hasState = false;
             ending.hasState = true;
@@ -157,7 +162,7 @@ function checkStart() {
         setTimeout(function () {
             game.hasState = false;
             ending.hasState = false;
-        }, 150000);
+        }, 160000);
         isKeer1 = false;
     }
 }
