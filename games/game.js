@@ -33,7 +33,7 @@ class Game {
         this.body;
 
         this.configure = conf1;
-        this.state;
+        this.hasState;
 
         this.audioState;
     }

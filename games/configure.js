@@ -11,7 +11,7 @@ class Configure {
 
         this.engine;
         this._lastPose = null;
-        this.state;
+        this.hasState;
     }
 
     setup() {
@@ -42,6 +42,7 @@ class Configure {
         return this._lastPose;
     }
 
+    // Resultaten van PoseNet zijn nauwkeuriger als er meer van je lichaam zichtbaar is
     gotPoses(results) {
         if (results.length > 0) {
             this._lastPose = results[0].pose;

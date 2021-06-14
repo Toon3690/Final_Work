@@ -1,12 +1,12 @@
 class Ending {
     constructor() {
-        this.state;
+        this.hasState;
     }
 
     draw() {
-        image(game.img1, 0, 0, 320, 240);
-        image(game.img2, 320, 0, 320, 240);
-        image(game.img3, 0, 240, 320, 240);
-        image(game.img4, 320, 240, 320, 240);
+        image(game.img1, 10, 0, 310, 240);
+        image(game.img2, 310, 0, 310, 240);
+        image(game.img3, 10, 240, 310, 240);
+        image(game.img4, 310, 240, 310, 240);
     }
 }

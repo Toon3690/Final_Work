@@ -1,7 +1,7 @@
 class Waiting {
     constructor(configure) {
         this.configure = configure;
-        this.state = false;
+        this.hasState = false;
         this.timeNose = 0;
         this.img;
         this.images = [loadImage('images/test1.png'), loadImage('images/test2.png'), loadImage('images/test3.png'), loadImage('images/test4.png')];
@@ -49,7 +49,7 @@ class Waiting {
     // Als de neus wordt waargenomen telt er 1 seconden bij, als deze niet wordt waargenomen gaat de teller terug naar 0
     // Als 15 wordt gehaald is het wachtscherm over en gaan we over naar de spelmodus
     checkForStart() {
-        if (wait.state) {
+        if (wait.hasState) {
             var pose = this.configure.lastPose;
             if (pose) {
                 if (pose.keypoints[0].score > 0.65) {
@@ -60,8 +60,8 @@ class Waiting {
                 console.log(this.timeNose);
                 if (this.timeNose == 3) {
                     console.log("laten we beginnen");
-                    wait.state = false;
-                    game.state = true;
+                    wait.hasState = false;
+                    game.hasState = true;
                 }
             }
 
